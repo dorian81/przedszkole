@@ -1,0 +1,36 @@
+﻿body{
+	background-color:#1883EB;
+}
+
+#container{
+	width:1024px;
+	background:url(img/cntbg.jpg);	
+}
+
+#header{
+	background:url(img/gora.jpg);
+	height:150px;
+}
+
+#left{
+	float:left;
+	text-align:left;
+	width:200px;
+	#padding:10px;
+
+}
+
+#content{
+	float:left;
+	text-align:justify;
+	width:734px;
+	padding:10px 80px 10px 10px;
+	
+}
+
+#footer{
+	background:url(img/dol.jpg);
+	height:150px;
+	clear:both;
+}
+
