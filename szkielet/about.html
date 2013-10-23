@@ -1,0 +1,54 @@
+<HTML>
+	<HEAD>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript">
+			function load(){
+				document.getElementById('content')
+			}
+		</script>
+	</HEAD>
+	<BODY>
+		<center>
+		<div id="container">
+			<div id="header"></div>
+			<div id="left">
+				<h2>menu</h2>
+				<a href="index.html" class="menu bg1">Strona główna</a>
+				<a href="about.html" class="menu selected bg2">O nas</a>
+				<a href="program.html" class="menu bg3">Program</a>
+				<a href="staff.html" class="menu bg4">Kadra</a>
+				<a href="groups.html" class="menu bg5">Grupy</a>
+				<a href="activity.html" class="menu bg6">Zajęcia dodatkowe</a>
+				<a href="success.html" class="menu bg7">Nasze sukcesy</a>
+				<a href="callendar.html" class="menu bg8">Kalendarium</a>
+				<a href="info.html" class="menu bg9">Ważne informacje</a>
+				<a href="poll.html" class="menu bg10">Ankiety</a>
+			</div>
+			<div id="content">
+				<h3><i>W dzieciństwie niewiele zależy od nas, wiele zaś od tych, którzy są z nami.</i></h3>
+				<p>Wszystkich rodziców, którzy pragną, aby ich dziecko mając zapewnione poczucie bezpieczeństwa wkraczało w samodzielność, miło i twórczo spędzało czas - zapraszamy do naszego przedszkola Niezmiennie istniejemy od 1982 roku. Dzieci przebywające w naszej placówce są podzielone na 5 grup.</p>
+				<p>2 grupy w oddziałach zamiejscowych przy ul. Witoszyńskiego1. </p>
+				<p>Budynek przy ul. Meissnera 8b jest parterowy, ma duże, kolorowe, bogato wyposażone sale, nowo wyremontowane łazienki dla dzieci, a także piękny, pełen zieleni ogród.</p>
+				<p>Grupy przy ul. Witoszyńskiego1 mieszczą się w bloku mieszkalnym. Panuje tam prawdziwa rodzinna, ciepła atmosfera.</p>
+				<br>
+				<strong>Zapewniamy:</strong><br>
+				<ul>
+					<li>Serdeczną, troskliwą opiekę w godzinach 7.00-17.30, </li>
+					<li>Indywidualne podejście do każdego dziecka, </li>
+					<li>Opiekę specjalistów: logopedy, psychologa, </li>
+					<li>Dobre przygotowanie do podjęcia nauki w szkole, </li>
+					<li>Uczestnictwo dzieci w ciekawych formach edukacyjnych.</li>
+				</ul>
+				<br>
+				<p>Przedszkole nasze otrzymało certyfikat CHRONIMY DZIECI na lata 2011/2012 oraz 2012/2013 Szczegółowe informacje na stronie:  <a href="http://www.fdn.pl">www.fdn.pl</a></p>
+			</div>
+			<div id="footer"></div>
+			<script type="text/javascript">
+				var tmpclass=document.getElementsByClassName('selected')[0].className;
+				document.getElementById('content').className=tmpclass.substr(tmpclass.indexOf('bg'),tmpclass.length);
+			</script>
+			</div>
+		</center>
+	</BODY>
+</HTML>
