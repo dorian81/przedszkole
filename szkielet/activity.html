@@ -16,8 +16,8 @@
 				<h2>menu</h2>
 				<a href="index.html" class="menu bg1">Strona główna</a>
 				<a href="about.html" class="menu bg2">O nas</a>
-				<a href="program.html" class="menu bg3">Program</a>
-				<a href="staff.html" class="menu bg4">Kadra</a>
+				<a href="program.html" class="menu bg4">Program</a>
+				<a href="staff.html" class="menu bg3">Kadra</a>
 				<a href="groups.html" class="menu bg5">Grupy</a>
 				<a href="activity.html" class="menu selected bg6">Zajęcia dodatkowe</a>
 				<a href="success.html" class="menu bg7">Nasze sukcesy</a>
@@ -36,6 +36,7 @@
 			<script type="text/javascript">
 				var tmpclass=document.getElementsByClassName('selected')[0].className;
 				document.getElementById('content').className=tmpclass.substr(tmpclass.indexOf('bg'),tmpclass.length);
+				if (document.getElementById('left').clientHeight>document.getElementById('content').clientHeight) document.getElementById('content').style.height=document.getElementById('left').clientHeight;
 			</script>
 			</div>
 		</center>
