@@ -1,11 +1,41 @@
 <HTML>
 	<HEAD>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<style>
+			#map-canvas {
+			height: 400px;
+			width: 400px;
+			margin: 20px;
+			padding: 0px
+			}
+		</style>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=pl"></script>
 		<script type="text/javascript">
 			function load(){
 				document.getElementById('content')
 			}
+		</script>
+		<script>
+			function initialize() {
+			  var LatLng = new google.maps.LatLng(52.2238167, 21.0881000);
+			  var mapOptions = {
+				zoom:16,
+				center: LatLng,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+			  };
+			  var map = new google.maps.Map(document.getElementById('map-canvas'),
+				  mapOptions);
+			  
+			    var marker = new google.maps.Marker({
+					  position: LatLng,
+					  map: map,
+					  title: 'Przedszkole 384'
+				  });
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);		
 		</script>
 	</HEAD>
 	<BODY>
@@ -14,7 +44,7 @@
 			<div id="header"></div>
 			<div id="left">
 				<h2>menu</h2>
-				<a href="index.html" class="menu selected bg1">Strona główna</a>
+				<a href="index.html" class="menu bg1">Strona główna</a>
 				<a href="about.html" class="menu bg2">O nas</a>
 				<a href="program.html" class="menu bg4">Program</a>
 				<a href="staff.html" class="menu bg3">Kadra</a>
@@ -24,11 +54,21 @@
 				<a href="callendar.html" class="menu bg8">Kalendarium</a>
 				<a href="info.html" class="menu bg9">Ważne informacje</a>
 				<a href="poll.html" class="menu bg10">Ankiety</a>
-				<a href="contact.html" class="menu bg11">Kontakt</a>
+				<a href="contact.html" class="menu selected bg11">Kontakt</a>
 				<a href="http://przedszkole384.bip.um.warszawa.pl" target = "top"><img src="img/bip_logo.jpg" style="padding-top:20px"></a>
 			</div>
 			<div id="content">
-				<h2>Nowiści i inne rzeczy!</h2>
+			<h2>Kontakt</h2>
+				<div style="float:left; padding-right:20px;">
+					<h3>Adres korespondencyjny</h3>
+					Przedszkole 384<br>ul. Meissnera 8b<br>03-982 Warszawa<br>
+					<h3> Telefony</h3>
+					ul. Meissnera: 22 613 68 00<br>ul. Witoszyńskiego: 22 613 57 42
+					<h3>e-mail</h3>
+					przedszkole384@op.pl
+				</div>
+				<div id="map-canvas"></div>
+				
 			</div>
 			<div id="footer"></div>
 			<script type="text/javascript">
