@@ -1,5 +1,6 @@
 ﻿body{
-	background-color:#ddffff;
+	background-image: url(img/body_bg.png);
+	background-repeat: repeat-x;
 }
 
 #container{
@@ -16,8 +17,11 @@
 	float:left;
 	text-align:left;
 	width:200px;
-#	border-right:1px solid;
+}
 
+#menu_h{
+	height:50px;
+	background-image:url(img/menu.png);
 }
 
 #left a{
@@ -45,8 +49,6 @@
 }
 
 .selected{
-#	border-bottom:1px solid;
-#	border-left:1px solid;
 	oferflow:visible;
 	width:201px !important;
 }
@@ -65,8 +67,6 @@
 
 #left a:hover{
 	color:#00b3ff;
-#	border-top:1px solid;
-#	border-left:1px solid;
 }
 
 #left a span{
@@ -80,7 +80,7 @@
 }
 
 #footer{
-#	background:url(img/footer.png);
+	background:url(img/footer_bg.png);
 	height:150px;
 	clear:both;
 }
