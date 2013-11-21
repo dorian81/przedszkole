@@ -1,17 +1,29 @@
 <?php
     include_once '/controller/show.php';
+    $site = (isset($_GET['site']))?$_GET['site']:'';
     $bundle = new bundle();
     $head = $bundle->head();
-    $content = $bundle->content($_GET['site']);
-    $menu = $bundle->menu($_GET['site']);
+    $content = $bundle->content($site);
+    $menu = $bundle->menu($site);
 ?>
 <HTML>
     <HEAD>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="styles/style.css">
-        <!--<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>-->
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         <SCRIPT type="text/javascript" src="js/script.js"></script>
+        <link rel="stylesheet" href="js/fbox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+        <script type="text/javascript" src="js/fbox/jquery.fancybox.pack.js?v=2.1.5"></script>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=pl"></script>
+        <style>
+			#map-canvas {
+			height: 400px;
+			width: 400px;
+			margin: 20px;
+			padding: 0px
+			}
+		</style>
         <?php echo $head; ?>
     </HEAD>
     <BODY>

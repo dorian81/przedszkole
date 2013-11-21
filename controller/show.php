@@ -9,29 +9,27 @@ class bundle{
     }
     
     public function content($site){
+        if ($site == '') $site = 'main';
         $sql = new sql;
-        $site = $sql->select_site($site);
-        $content = $site['content'];
+        $data = $sql->select_site($site);
+        $content = $data['content'];
         return $content;
     }
     
     public function menu($request){
+        if ($request == '') $request = 'main';
         $sql = new sql();
         $result = $sql->select('sites');
         while ($row = mysql_fetch_assoc($result)){
             $sites[] = $row;
         }
         $menu = '';
-        if (mysql_num_rows($result) > 1){
-            foreach ($sites as $site){
-                $menu .= '<a href = "'.$site['link'].'" class = "menu ';
+        foreach ($sites as $site){
+            if ($site['active'] == 1){
+                $menu .= '<a href = "/przedszkole/'.$site['link'].'" class = "menu ';
                 $menu .= ($request==$site['link'])?'selected ':'';
                 $menu .= $site['style'].'">'.$site['name'].'</a>';
             }
-        }else{
-            $menu .= '<a href = "/'.$sites['link'].'" class = "menu ';
-            $menu .= ($request==$sites['link'])?'selected ':'';
-            $menu .= $sites['style'].'">'.$sites['name'].'</a>';
         }
         return $menu;
     }

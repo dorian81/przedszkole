@@ -1,6 +1,8 @@
 RewriteEngine On
 RewriteBase /przedszkole/
 
-RewriteRule ^((?!konsola).[a-zA-Z-_0-9]+)$ index.php/?site=$1 [L,QSA]
-RewriteRule ^konsola$ console/index.php [L,QSA]
-RewriteRule ^konsola\/([a-zA-Z-_0-9]+)$ console/index.php/?action=$1 [L,QSA]
+RewriteRule ^main$ index.php [L,QSA]
+RewriteRule ^((?!console).[a-zA-Z-_0-9]+)$ index.php/?site=$1 [L,QSA]
+
+#RewriteRule ^konsola\/$ console/ [L,QSA]
+#RewriteRule ^konsola\/([a-zA-Z-_0-9]+)$ console/index.php/?action=$1 [L,QSA]
