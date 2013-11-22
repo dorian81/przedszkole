@@ -83,3 +83,11 @@
 	height:150px;
 	clear:both;
 }
+
+.info{
+    margin: 10px;
+}
+.info h2{
+    margin-top: 0;
+    margin-bottom: 5px;
+}

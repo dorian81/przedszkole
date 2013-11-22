@@ -23,8 +23,8 @@ class sql{
         return mysql_fetch_assoc($this->query($q));
     }
     
-    public function select($table){
-        $q = 'SELECT * FROM '.$table;
+    public function select_sites(){
+        $q = 'SELECT * FROM sites ORDER BY pos ASC;';
         return $this->query($q);
     }
     
@@ -32,9 +32,26 @@ class sql{
         $q = 'SELECT * FROM sites WHERE link = "'.$site.'";';
         return $this->to_array($q);
     }
+
+        public function select_child($parrent){
+        $q = 'SELECT * FROM sites WHERE parrent="'.$parrent.'";';
+        $result = $this->query($q);
+        $children = array();
+        if ($result){
+            while ($row = mysql_fetch_assoc($result)){
+                    $children[] = $row;
+                }
+        }
+        return $children;
+    }
     
-    public function update ($data){
-        $q = 'update sites set name = "'.$data['name'].'",link = "'.$data['link'].'", content = "'.$data['content'].'" where id=2;';
+    public function select_info(){
+        $q = 'SELECT * FROM news  ORDER BY date DESC;';
+        return $this->query($q);
+    }
+    
+    public function select_info_main(){
+        $q = 'SELECT * FROM news ORDER BY date DESC LIMIT 5;';
         return $this->query($q);
     }
 }
