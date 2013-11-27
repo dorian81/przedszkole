@@ -4,13 +4,15 @@ function form($site){
     $sql = new sql;
     if ($site != 'new'){
         $data = $sql->select_site($site);
+        $form = '<h2>Edycja strony: "'.$data['name'].'"</h2>';
     }else{
+        $form = '<h2>Nowa strona</h2>';
         $data['pos'] = $sql->select_max_pos()+1;
         $data['id'] = '';
         $data['name'] = '';
         $data['type'] = 'text';
         $data['link'] = '';
-        if ($_GET['parrent'] !='/'){
+        if (isset($_GET['parrent']) && $_GET['parrent'] !='/'){
             $parent = $sql->select_site($_GET['parrent']);
             $data['style'] = $parent['style'];
         }else{
@@ -24,7 +26,7 @@ function form($site){
             $data['parrent'] = $_GET['parrent'];
         }
     }
-    $form = '
+    $form .= '
             <form action = "save.php?action=';
     $form .= ($site !='new' )?'update':'insert';
     $form .= '" method = "POST">

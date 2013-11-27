@@ -123,4 +123,9 @@ class sql{
         $q = 'DELETE FROM news WHERE id='.$id.';';
         return $this->query($q);
     }
+    
+    public function select_gal_names(){
+        $q = 'SELECT DISTINCT(gal) FROM gals;';
+        return $this->query($q);
+    }
 }

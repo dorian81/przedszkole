@@ -1,8 +1,8 @@
 <?php
     require_once 'menu.php';
-    require_once 'edit.php';
-    require_once 'order.php';
-    require_once 'info.php';
+    
+    
+    
     $site = (isset($_GET['action']))?$_GET['action']:'';
 ?>
 <HTML>
@@ -27,6 +27,7 @@
                 <?php
                     switch ($site){
                         case 'order':{
+                            require_once 'order.php';
                             echo order();
                             break;
                         }
@@ -35,21 +36,43 @@
                             break;
                         }
                         case 'inf_new':{
+                            require_once 'info.php';
                             echo inf_form();
                             echo '<script type="text/javascript"> info(); </script>';
                             break;
                         }
                         case 'inf_list':{
+                            require_once 'info.php';
                             echo inf_list();
                             echo '<script type="text/javascript"> info(); </script>';
                             break;
                         }
                         case 'inf_edit':{
+                            require_once 'info.php';
                             echo inf_form();
                             echo '<script type="text/javascript"> info(); </script>';
                             break;
                         }
+                        case 'upl_list':{
+                            require_once 'upload.php';
+                            echo upl_list();
+                            echo '<script type="text/javascript"> upload(); </script>';
+                            break;
+                        }
+                        case 'upl_new':{
+                            require_once 'upload.php';
+                            echo upl_form();
+                            echo '<script type="text/javascript"> upload(); </script>';
+                            break;
+                        }
+                        case 'gal_new':{
+                            require_once 'gals.php';
+                            echo gal_form();
+                            echo '<script type="text/javascript"> gals(); </script>';
+                            break;
+                        }
                         default:{
+                            require_once 'edit.php';
                             echo form($site);
                             echo '<script type="text/javascript"> sites(); </script>';
                             break;

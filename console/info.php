@@ -13,7 +13,7 @@ function inf_form(){
         $data = $sql->inf_select_inf($_GET['id']);
     }
     
-    $form = '
+    $form = '<h2>Nowa wiadomość</h2>
             <form action="save.php?action=';
     $form .= ($action == 'inf_new')?'in_new':'in_sav&id='.$data['id'];
     $form .= '" method="POST"><input type="hidden" name="id" value="'.$data['id'].'">
@@ -31,7 +31,7 @@ function inf_list(){
     while ($row = mysql_fetch_assoc($result)){
         $news[]=$row;
     }
-    $form = '';
+    $form = '<h2>Lista wiadomości</h2>';
     foreach ($news as $info){
         $form .= '<strong>'.$info['title'].'</strong> '.date('d-m-Y H:m',strtotime($info['date'])).' <a href="index.php?action=inf_edit&id='.$info['id'].'">Edytuj</a> <a href = "save.php?action=in_del&id='.$info['id'].'">Usuń</a><br>'.$info['content'].'<br><br>';
     }

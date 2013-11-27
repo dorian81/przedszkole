@@ -27,8 +27,19 @@ function menu($site){
               <a href="index.php?action=order">Kolejność</a></div>
               <a rel="javascript.void(0)" onclick = "info()"><h3>Informacje:</h3></a>
               <div id="info" style="display:none;"><a href="index.php?action=inf_list">Lista</a><br><a href="index.php?action=inf_new">Dodaj</a><br></div>
-              <a rel="javascript.void(0)" onclick = "gals()"><h3>Galerie:</h3></a><div id="gals" style="display:none;"></div>
+              <a rel="javascript.void(0)" onclick = "gals()"><h3>Galerie:</h3></a><div id="gals" style="display:none;">';
+    $gals = array();
+    $result = $sql->select_gal_names();
+    while ($row = mysql_fetch_assoc($result)){
+        $gals[] = $row['gal'];
+    }
+    
+    foreach ($gals as $gal){
+        $menu .= '<a href="index.php?action=gal&gal='.$gal.'">'.$gal.'</a><br>';
+    }
+    $menu .= '<a href="index.php?action=gal_new">Dodaj</a>';
+    $menu .= '</div>
               <a rel="javascript.void(0)" onclick = "polls()"><h3>Ankiety:</h3></a><div id="polls" style="display:none;"></div>
-              <a rel="javascript.void(0)" onclick = "upload()"> <h3>Upload:</h3></a><div id="upload" style="display:none;"></div>';
+              <a rel="javascript.void(0)" onclick = "upload()"> <h3>Upload:</h3></a><div id="upload" style="display:none;"><a href="index.php?action=upl_list">Lista</a><br><a href="index.php?action=upl_new">Dodaj</a><br></div>';
     return $menu;
 }

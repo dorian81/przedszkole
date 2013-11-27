@@ -60,6 +60,20 @@ switch ($action) {
         header('location:index.php?action=inf_list');
         break;
     }
+    case 'upl':{
+        if ($_FILES["file"]["error"] > 0){
+            echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
+        }else{
+            move_uploaded_file($_FILES['file']['tmp_name'], '../upload/'.$_FILES['file']['name']);
+            header('location:index.php?action=upl_list');
+        }
+        break;
+    }
+    case 'upl_del':{
+        unlink('../upload/'.$_GET['file']);
+        header('location:index.php?action=upl_list');
+        break;
+    }
     default:
         break;
 }
