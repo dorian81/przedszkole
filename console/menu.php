@@ -37,7 +37,7 @@ function menu($site){
     foreach ($gals as $gal){
         $menu .= '<a href="index.php?action=gal&gal='.$gal.'">'.$gal.'</a><br>';
     }
-    $menu .= '<a href="index.php?action=gal_new">Dodaj</a>';
+    $menu .= '<br><a href="index.php?action=gal_new">Dodaj</a>';
     $menu .= '</div>
               <a rel="javascript.void(0)" onclick = "polls()"><h3>Ankiety:</h3></a><div id="polls" style="display:none;"></div>
               <a rel="javascript.void(0)" onclick = "upload()"> <h3>Upload:</h3></a><div id="upload" style="display:none;"><a href="index.php?action=upl_list">Lista</a><br><a href="index.php?action=upl_new">Dodaj</a><br></div>';

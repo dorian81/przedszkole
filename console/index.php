@@ -67,7 +67,13 @@
                         }
                         case 'gal_new':{
                             require_once 'gals.php';
-                            echo gal_form();
+                            echo gal_form('');
+                            echo '<script type="text/javascript"> gals(); </script>';
+                            break;
+                        }
+                        case 'gal':{
+                            require_once 'gals.php';
+                            echo gal_edit($_GET['gal']);
                             echo '<script type="text/javascript"> gals(); </script>';
                             break;
                         }

@@ -128,4 +128,25 @@ class sql{
         $q = 'SELECT DISTINCT(gal) FROM gals;';
         return $this->query($q);
     }
+    
+    public function insert_gal($name,$file){
+        $q = 'INSERT INTO gals(img,gal,pos) VALUES ("'.$file.'","'.$name.'",1);';
+        return$this->query($q);
+    }
+    
+    public function select_gal($gal){
+        $q = 'SELECT * FROM gals WHERE gal="'.$gal.'" ORDER BY pos ASC;';
+        return $this->query($q);
+    }
+    
+    public function select_max_gal_pos($gal){
+        $q = 'SELECT MAX(pos) AS max FROM gals WHERE gal="'.$gal.'";';
+        $result = $this->to_array($q);
+        return $result['max'];
+    }
+    
+    public function insert_photo($data){
+        $q = 'INSERT INTO gals(img,gal,pos) VALUES ("'.$data['img'].'","'.$data['gal'].'",'.$data['pos'].');';
+        return $this->query($q);
+    }
 }

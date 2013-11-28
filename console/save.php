@@ -74,6 +74,29 @@ switch ($action) {
         header('location:index.php?action=upl_list');
         break;
     }
+    case 'gal_new':{
+        require_once 'assets/img_upload.php';
+        if (upload_img($_FILES['file'])){
+            $sql->insert_gal($_POST['name'],$_FILES['file']['name']);
+            header('location:index.php?action=gal&gal='.$_POST['name']);
+        }else{
+            echo $_FILES['file']['error'];
+        }
+        break;
+    }
+    case 'gal_save':{
+        require_once 'assets/img_upload.php';
+        if (upload_img($_FILES['file'])){
+            $data['img'] = $_FILES['file']['name'];
+            $data['gal'] = $_POST['gal'];
+            $data['pos'] = $_POST['pos'];
+            $sql->insert_photo($data);
+            header('location:index.php?action=gal&gal='.$_POST['gal']);
+        }else{
+            echo $_FILES['file']['error'];
+        }
+        break;
+    }
     default:
         break;
 }
