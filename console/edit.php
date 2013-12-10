@@ -56,7 +56,7 @@ function form($site){
     }
     if ($site != 'new' && $data['link'] != 'main'){
         $form .= '<a href="save.php?action=delete&id='.$data['id'].'"><img src = "assets/delete.png"></a>';
-        $form .= ($data['parrent'] == '/')?'<a href="index.php?action=new&parrent='.$data['link'].'">Dodaj podstronę</a>':'';
+        $form .= ($data['parrent'] == '/')?'<a href="index.php?action=new&parrent='.$data['link'].'"><img src = "assets/subsite.png"></a>':'';
     }
     $form .= '<input type = "submit" value = "Zapisz"><br>';
     if ($data['link'] == 'main'){

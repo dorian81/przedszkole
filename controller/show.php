@@ -44,6 +44,22 @@ class bundle{
             }
             $content .='</div>';
         }
+        while ($needle = strpos($content,'##gal(')){
+            $gal_length = strpos($content,')',$needle)-($needle+6);
+            $gal = substr($content,$needle+6,$gal_length);
+            $result = $sql->select_gal($gal);
+            $imgs = '';
+            while ($row = mysql_fetch_assoc($result)){
+                $imgs .= '<a class="fancybox" rel="'.$gal.'" href="gals/'.$row['img'].'"><img src="gals/m/'.$row['img'].'" style="padding:0 5px 0 5px;"></a>';
+            }
+            $content = str_replace('##gal('.$gal.')',$imgs,$content);
+        }
+        $content.='<script type="text/javascript">
+                            $(document).ready(function() {
+                                $(".fancybox").fancybox();
+                            });
+                       </script> ';
+        
         return $content;
     }
     

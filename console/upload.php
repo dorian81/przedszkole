@@ -26,12 +26,12 @@ function upl_list(){
                     </script>
                     <h2>Lista plików:</h2>';
             foreach ($entries as $entry){
-                $list .= $entry.' <a rel="#" onclick="javascript:del(\''.$entry.'\')">Usuń</a>&nbsp;
-                        <a rel="#" onclick="javascript:cpy(\'http://'.$_SERVER['HTTP_HOST'].'/upload/'.$entry.'\')">Link</a><br>';
+                $list .= $entry.' <a rel="#" onclick="javascript:del(\''.$entry.'\')"><img src="assets/delete.png" alt="Usuń"></a>&nbsp;
+                        <a rel="#" onclick="javascript:cpy(\'http://'.$_SERVER['HTTP_HOST'].'/upload/'.$entry.'\')"><img src="assets/link.png" alt="Link"></a><br>';
             }
         }
     }
-    $list .= '<br><a href="index.php?action=upl_new">Dodaj</a>';
+    $list .= '<br><a href="index.php?action=upl_new"><img src="assets/new.png" alt="dodaj"></a>';
     echo $list;
 }
 

@@ -13,12 +13,12 @@ CKEDITOR.editorConfig = function( config ) {
         config.height = '400px';
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+		{ name: 'editing',     groups: [ 'spellchecker' ] },
 		{ name: 'links' },
 		{ name: 'insert' },
 		{ name: 'forms' },
 		{ name: 'tools' },
-		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'document' },
 		{ name: 'others' },
 		'/',
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'underline','cleanup' ] },

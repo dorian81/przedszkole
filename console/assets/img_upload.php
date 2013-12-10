@@ -2,10 +2,10 @@
 function upload_img($file){
     $img_name = $file['tmp_name'];
     $type = $file['type'];
-    $name = $_SERVER['DOCUMENT_ROOT'].'/przedszkole/gals/'.$file['name'];
-    $m_name = $_SERVER['DOCUMENT_ROOT'].'/przedszkole/gals/m/'.$file['name'];
-    
+    $time = time().'.jpg';
     if ($type == "image/jpeg" || $type == "image/pjpeg"){
+        $name = $_SERVER['DOCUMENT_ROOT'].'/przedszkole/gals/'.$time;
+        $m_name = $_SERVER['DOCUMENT_ROOT'].'/przedszkole/gals/m/'.$time;
         if(!($img = imagecreatefromjpeg($img_name))){
 		echo("Nie mogę otworzyć pliku:\"". $img_name."\"");
 		return false;
@@ -35,7 +35,7 @@ function upload_img($file){
             }else{
                 move_uploaded_file($file['img']['tmp_name'],$m_name);
             }
-            return true;
+            return $time;
         }
     }
 }

@@ -21,7 +21,10 @@ function order(){
             
         }
     }
-    $form .= '</table>';
+    $form .= '</table>
+              <script type="text/javascript">
+                sites();
+              </script>';
     
     return $form;
 }

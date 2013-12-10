@@ -38,8 +38,16 @@ a:hover{
     color: #00f;
 }
 
+.menu{
+    margin-left: 10px;
+    padding-left: 10px;
+    background: url(menu_dot_1.gif) no-repeat left center;
+}
+
 .submenu{
-    padding-left: 20px;
+    margin-left: 20px;
+    padding-left: 15px;
+    background: url(menu_dot_2.gif) no-repeat left center;
 }
 
 option{
@@ -74,4 +82,12 @@ div#sites{
 
 .gal{
     padding: 0 5px 0 5px;
+}
+
+.left{
+    float:left;
+}
+
+.right{
+    float:right;
 }

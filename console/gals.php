@@ -22,9 +22,26 @@
                     Wybierz zdjęcie: <input type="file" name="file"><input type="submit" value="Dodaj">
                     <input type="hidden" name="pos" value="'.($max_pos+1).'">
                     <input type="hidden" name="gal" value="'.$gal.'">
-                 </form>';
+                 </form>
+                 <br>
+                 <table border="0" cellspacing="2"cellpadding="2">
+                 ';
+        $rc = 0;
         while ($row = mysql_fetch_assoc($result)){
-            $form .= '<img src="../gals/m/'.$row['img'].'" class="gal">';
-        }
+            if ($rc == 0){
+                $form.='<tr>';
+            }
+            $form .= '<td><div style="text-align:center;">';
+            $form .= ($row['pos'] < $max_pos)?'<a class="right" href="save.php?action=gal_right&id='.$row['id'].'&gal='.$row['gal'].'"><img src="assets/right.png"></a>':'';
+            $form .= '<a href="save.php?action=gal_del&id='.$row['id'].'&gal='.$row['gal'].'"><img src="assets/delete.png" alt="Usuń"></a>';
+            $form .= ($row['pos'] > 1)?'<a class="left" href="save.php?action=gal_left&id='.$row['id'].'&gal='.$row['gal'].'"><img src="assets/left.png"></a>':'';
+            $form .= '</div><div><img src="../gals/m/'.$row['img'].'" class="gal"></div></td>';
+            $rc++;
+            if ($rc > 4){
+                $rc = 0;
+                $form .= '</tr>';
+            }
+        }   
+        
         echo $form;
     }

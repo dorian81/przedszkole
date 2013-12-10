@@ -76,8 +76,8 @@ switch ($action) {
     }
     case 'gal_new':{
         require_once 'assets/img_upload.php';
-        if (upload_img($_FILES['file'])){
-            $sql->insert_gal($_POST['name'],$_FILES['file']['name']);
+        if ($name = upload_img($_FILES['file'])){
+            $sql->insert_gal($_POST['name'],$name);
             header('location:index.php?action=gal&gal='.$_POST['name']);
         }else{
             echo $_FILES['file']['error'];
@@ -86,8 +86,8 @@ switch ($action) {
     }
     case 'gal_save':{
         require_once 'assets/img_upload.php';
-        if (upload_img($_FILES['file'])){
-            $data['img'] = $_FILES['file']['name'];
+        if ($name = upload_img($_FILES['file'])){
+            $data['img'] = $name;
             $data['gal'] = $_POST['gal'];
             $data['pos'] = $_POST['pos'];
             $sql->insert_photo($data);
@@ -96,6 +96,26 @@ switch ($action) {
             echo $_FILES['file']['error'];
         }
         break;
+    }
+    case 'gal_right':{
+        $pos = $sql->select_img_pos($_GET['id']);
+        $sql->gal_right($pos,$_GET['id']);
+        header('location:index.php?action=gal&gal='.$_GET['gal']);
+        break;
+    }
+    case 'gal_left':{
+        $pos = $sql->select_img_pos($_GET['id']);
+        $sql->gal_left($pos,$_GET['id']);
+        header('location:index.php?action=gal&gal='.$_GET['gal']);
+        break;
+    }
+    case 'gal_del':{
+        $img = $sql->select_img($_GET['id']);
+        $path = $_SERVER['DOCUMENT_ROOT'].'/przedszkole/gals/';
+        if (unlink($path.$img) && unlink ($path.'m/'.$img)){
+            $sql->del_img($_GET['id']);
+        }
+        header('location:index.php?action=gal&gal='.$_GET['gal']);
     }
     default:
         break;

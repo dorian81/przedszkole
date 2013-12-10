@@ -149,4 +149,36 @@ class sql{
         $q = 'INSERT INTO gals(img,gal,pos) VALUES ("'.$data['img'].'","'.$data['gal'].'",'.$data['pos'].');';
         return $this->query($q);
     }
+    
+    public function select_img_pos($id){
+        $q = 'SELECT pos FROM gals WHERE id='.$id.';';
+        $result = mysql_fetch_assoc($this->query($q));
+        return $result['pos'];
+    }
+    
+    public function gal_right($pos,$id){
+        $new = $pos + 1;
+        $this->query('UPDATE gals SET pos='.$pos.' WHERE pos='.$new.';');
+        $this->query('UPDATE gals SET pos='.$new.' WHERE id='.$id.';');
+        return true;
+    }   
+    
+    public function gal_left($pos,$id){
+        $new = $pos - 1;
+        $this->query('UPDATE gals SET pos='.$pos.' WHERE pos='.$new.';');
+        $this->query('UPDATE gals SET pos='.$new.' WHERE id='.$id.';');
+        return true;
+    }
+    
+    public function select_img($id){
+        $q = 'SELECT img FROM gals WHERE id='.$id.';';
+        $result = mysql_fetch_assoc($this->query($q));
+        return $result['img'];
+    }
+    
+    public function del_img($id){
+        $q = 'DELETE FROM gals WHERE id='.$id.';';
+        $result = $this->query($q);
+        return $result;
+    }
 }

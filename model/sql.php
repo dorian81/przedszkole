@@ -54,4 +54,9 @@ class sql{
         $q = 'SELECT * FROM news ORDER BY date DESC LIMIT 5;';
         return $this->query($q);
     }
+        
+    public function select_gal($gal){
+        $q = 'SELECT img FROM gals WHERE gal="'.$gal.'" ORDER BY pos ASC;';
+        return $this->query($q);
+    }
 }

@@ -7,7 +7,7 @@ function menu($site){
     while ($row = mysql_fetch_assoc($result)) {
         $items[] = $row;
     }
-    $menu = '<a rel="javascript.void(0)" onclick = "sites()"><h3>Strony:</h3></a><div id="sites" style="display:none;">';
+    $menu = '<a rel="javascript.void(0)" onclick = "sites()"><h3><img src="assets/menu_dot.gif">Strony:</h3></a><div id="sites" style="display:none;">';
     foreach ($items as $item){
         if ($item['parrent'] == '/'){
             $menu .= '<a href = "/przedszkole/console/index.php?action='.$item['link'].'" class = "menu';
@@ -23,11 +23,11 @@ function menu($site){
             }
         }
     }
-    $menu .= '<br><a href="index.php?action=new">Dodaj</a><br>
-              <a href="index.php?action=order">Kolejność</a></div>
-              <a rel="javascript.void(0)" onclick = "info()"><h3>Informacje:</h3></a>
-              <div id="info" style="display:none;"><a href="index.php?action=inf_list">Lista</a><br><a href="index.php?action=inf_new">Dodaj</a><br></div>
-              <a rel="javascript.void(0)" onclick = "gals()"><h3>Galerie:</h3></a><div id="gals" style="display:none;">';
+    $menu .= '<br><a href="index.php?action=new"><img src="assets/new.png" alt="Dodaj"></a><br>
+              <a href="index.php?action=order"><img src="assets/order.png" alt="Kolejność"></a></div>
+              <a rel="javascript.void(0)" onclick = "info()"><h3><img src="assets/menu_dot.gif">Informacje:</h3></a>
+              <div id="info" style="display:none;"><a href="index.php?action=inf_list"><img src="assets/list.png" alt="Lista"></a><br><a href="index.php?action=inf_new"><img src="assets/new.png" alt="Dodaj"></a><br></div>
+              <a rel="javascript.void(0)" onclick = "gals()"><h3><img src="assets/menu_dot.gif">Galerie:</h3></a><div id="gals" style="display:none;">';
     $gals = array();
     $result = $sql->select_gal_names();
     while ($row = mysql_fetch_assoc($result)){
@@ -35,11 +35,11 @@ function menu($site){
     }
     
     foreach ($gals as $gal){
-        $menu .= '<a href="index.php?action=gal&gal='.$gal.'">'.$gal.'</a><br>';
+        $menu .= '<a class="menu" href="index.php?action=gal&gal='.$gal.'">'.$gal.'</a><br>';
     }
-    $menu .= '<br><a href="index.php?action=gal_new">Dodaj</a>';
+    $menu .= '<br><a href="index.php?action=gal_new"><img src="assets/new.png" alt="Dodaj"></a>';
     $menu .= '</div>
-              <a rel="javascript.void(0)" onclick = "polls()"><h3>Ankiety:</h3></a><div id="polls" style="display:none;"></div>
-              <a rel="javascript.void(0)" onclick = "upload()"> <h3>Upload:</h3></a><div id="upload" style="display:none;"><a href="index.php?action=upl_list">Lista</a><br><a href="index.php?action=upl_new">Dodaj</a><br></div>';
+              <a rel="javascript.void(0)" onclick = "polls()"><h3><img src="assets/menu_dot.gif">Ankiety:</h3></a><div id="polls" style="display:none;"></div>
+              <a rel="javascript.void(0)" onclick = "upload()"> <h3><img src="assets/menu_dot.gif">Upload:</h3></a><div id="upload" style="display:none;"><a href="index.php?action=upl_list"><img src="assets/list.png" alt="Lista"></a><br><a href="index.php?action=upl_new"><img src="assets/new.png" alt="Dodaj"></a><br></div>';
     return $menu;
 }
