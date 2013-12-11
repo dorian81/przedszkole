@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    $sess_id = session_id();
+    if ($sess_id != $_SESSION['id']){
+        header('location:login.php');
+    }
     require_once 'menu.php';
     
     
@@ -16,7 +21,12 @@
         <script type="text/javascript" src="assets/script.js"></script>
     </HEAD>
     <BODY>
-        <div id="head"></div>
+        <div id="head">
+            <span style="float:right;">
+                Zalogowany: <?php echo $_SESSION['imie'].' '.$_SESSION['nazwisko']; ?><br>
+                <a href="login.php?action=logout">Wyloguj</a>
+            </span>    
+        </div>
         <div id="container">
             <div id="left">
                 <?php
@@ -75,6 +85,30 @@
                             require_once 'gals.php';
                             echo gal_edit($_GET['gal']);
                             echo '<script type="text/javascript"> gals(); </script>';
+                            break;
+                        }
+                        case 'adm_list':{
+                            require_once 'admins.php';
+                            echo adm_list();
+                            echo '<script type="text/javascript"> admins(); </script>';
+                            break;
+                        }
+                        case 'adm_new':{
+                            require_once 'admins.php';
+                            echo adm_new();
+                            echo '<script type="text/javascript"> admins(); </script>';
+                            break;
+                        }
+                        case 'adm_edit':{
+                            require_once 'admins.php';
+                            echo adm_edit($_GET['id']);
+                            echo '<script type="text/javascript"> admins(); </script>';
+                            break;
+                        }
+                        case 'adm_pwd':{
+                            require_once 'admins.php';
+                            echo adm_pwd($_GET['id']);
+                            echo '<script type="text/javascript"> admins(); </script>';
                             break;
                         }
                         default:{

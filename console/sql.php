@@ -181,4 +181,47 @@ class sql{
         $result = $this->query($q);
         return $result;
     }
+    
+    public function select_admins(){
+        $q = 'SELECT id, imie, nazwisko, login FROM admins;';
+        $result = $this->query($q);
+        return $result;
+    }
+    
+    public function insert_adm($data){
+        $q = 'INSERT INTO admins(imie,nazwisko,login,pass) VALUES ("'.$data['imie'].'","'.$data['nazwisko'].'","'.$data['login'].'","'.crypt($data['pass'],'przEdszk0le').'");';
+        $result = $this->query($q);
+        return $result;
+    }
+    
+    public function check_login($login,$pass){
+        $q = 'SELECT imie,nazwisko FROM admins WHERE login="'.$login.'" AND pass="'.crypt($pass,'przEdszk0le').'";';
+        $result = $this->query($q);
+        return $result;
+    }
+    
+    public function select_adm($id){
+        $q = 'SELECT id,imie,nazwisko,login FROM admins WHERE id='.$id.';';
+        $result = $this->query($q);
+        return $result;
+    }
+    
+    public function update_adm($data){
+        $q = 'UPDATE admins SET imie="'.$data['imie'].'", nazwisko="'.$data['nazwisko'].'", login="'.$data['login'].'" WHERE id='.$data['id'].';';
+        $result = $this->query($q);
+        return $result;
+    }
+    
+    public function pwd($data){
+        $q = 'UPDATE admins SET pass="'.crypt($data['pass'],'przEdszk0le').'" WHERE id='.$data['id'].';';
+        $result = $this->query($q);
+        return $result;
+    }
+    
+    public function del_adm($id){
+        $q = 'DELETE FROM admins WHERE id='.$id.';';
+        $result = $this->query($q);
+        return $result;
+    }
+    
 }

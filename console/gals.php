@@ -16,7 +16,7 @@
         $result = $sql->select_gal($gal);
         $max_pos = $sql->select_max_gal_pos($gal);
         
-        $form = '<h2>Edycja galerii '.$gal.'</h2>
+        $form = '<h2>Edycja galerii '.$gal.'<a style="margin-left:10px;" href="#" onclick="javascript:del_gal(\''.$gal.'\')"><img src="assets/delete.png" alt="Usuń galerię"></a></h2>
                  <form action ="save.php?action=gal_save" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="MAX_FILE_SIZE" value="4000000" />
                     Wybierz zdjęcie: <input type="file" name="file"><input type="submit" value="Dodaj">
@@ -33,7 +33,7 @@
             }
             $form .= '<td><div style="text-align:center;">';
             $form .= ($row['pos'] < $max_pos)?'<a class="right" href="save.php?action=gal_right&id='.$row['id'].'&gal='.$row['gal'].'"><img src="assets/right.png"></a>':'';
-            $form .= '<a href="save.php?action=gal_del&id='.$row['id'].'&gal='.$row['gal'].'"><img src="assets/delete.png" alt="Usuń"></a>';
+            $form .= '<a href="#" onclick="javascript:del_img('.$row['id'].',\''.$row['gal'].'\')"><img src="assets/delete.png" alt="Usuń"></a>';
             $form .= ($row['pos'] > 1)?'<a class="left" href="save.php?action=gal_left&id='.$row['id'].'&gal='.$row['gal'].'"><img src="assets/left.png"></a>':'';
             $form .= '</div><div><img src="../gals/m/'.$row['img'].'" class="gal"></div></td>';
             $rc++;

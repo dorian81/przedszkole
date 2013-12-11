@@ -40,6 +40,7 @@ function menu($site){
     $menu .= '<br><a href="index.php?action=gal_new"><img src="assets/new.png" alt="Dodaj"></a>';
     $menu .= '</div>
               <a rel="javascript.void(0)" onclick = "polls()"><h3><img src="assets/menu_dot.gif">Ankiety:</h3></a><div id="polls" style="display:none;"></div>
-              <a rel="javascript.void(0)" onclick = "upload()"> <h3><img src="assets/menu_dot.gif">Upload:</h3></a><div id="upload" style="display:none;"><a href="index.php?action=upl_list"><img src="assets/list.png" alt="Lista"></a><br><a href="index.php?action=upl_new"><img src="assets/new.png" alt="Dodaj"></a><br></div>';
+              <a rel="javascript.void(0)" onclick = "upload()"> <h3><img src="assets/menu_dot.gif">Upload:</h3></a><div id="upload" style="display:none;"><a href="index.php?action=upl_list"><img src="assets/list.png" alt="Lista"></a><br><a href="index.php?action=upl_new"><img src="assets/new.png" alt="Dodaj"></a><br></div>
+              <a rel="javascript.void(0)" onclick = "admins()"><h3><img src="assets/menu_dot.gif">Administratorzy:</h3></a><div id="admins" style="display:none;"><a href="index.php?action=adm_list"><img src="assets/list.png" alt="Lista"></a><br><a href="index.php?action=adm_new"><img src="assets/new.png" alt="Dodaj"></a><br></div>';
     return $menu;
 }

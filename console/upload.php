@@ -14,24 +14,19 @@ function upl_list(){
         if (count($entries) == 0){
             $list = '<h2>Brak plików</h2>';
         }else{
-            $list = '<script type="text/javascript">
-                        function cpy(text){
-                            window.prompt ("Skopiuj link:", text);
-                        }
-                        function del(file){
-                            if (confirm(\'Czy na pewno usunąć \'+file+\'?\')){
-                                document.location=\'save.php?action=upl_del&file=\'+file;
-                            }
-                        }
-                    </script>
-                    <h2>Lista plików:</h2>';
+            $list = '<h2>Lista plików:</h2>
+                     <table border="0" cellspacing="2" cellpadding="2">';
             foreach ($entries as $entry){
-                $list .= $entry.' <a rel="#" onclick="javascript:del(\''.$entry.'\')"><img src="assets/delete.png" alt="Usuń"></a>&nbsp;
-                        <a rel="#" onclick="javascript:cpy(\'http://'.$_SERVER['HTTP_HOST'].'/upload/'.$entry.'\')"><img src="assets/link.png" alt="Link"></a><br>';
+                $list .= '<tr><td><a href="../upload/'.$entry.'">'.$entry.'</a></td>
+                              <td>
+                                <a rel="#" onclick="javascript:del(\''.$entry.'\')"><img src="assets/delete.png" alt="Usuń"></a>&nbsp;
+                                <a rel="#" onclick="javascript:cpy(\'http://'.$_SERVER['HTTP_HOST'].'/upload/'.$entry.'\')"><img src="assets/link.png" alt="Link"></a>
+                              </td>
+                          </tr>';
             }
         }
     }
-    $list .= '<br><a href="index.php?action=upl_new"><img src="assets/new.png" alt="dodaj"></a>';
+    $list .= '</table><br><a href="index.php?action=upl_new"><img src="assets/new.png" alt="dodaj"></a>';
     echo $list;
 }
 

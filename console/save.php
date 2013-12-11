@@ -9,7 +9,7 @@ switch ($action) {
         if ($_POST['parrent'] == '/'){
             $sql->update_children($_POST['link'],$_POST['style']);
         }
-        header('location:index.php');
+        header('location:index.php?action='.$_POST['name']);
         break;
     }
     case 'insert':{
@@ -109,13 +109,49 @@ switch ($action) {
         header('location:index.php?action=gal&gal='.$_GET['gal']);
         break;
     }
-    case 'gal_del':{
+    case 'img_del':{
         $img = $sql->select_img($_GET['id']);
         $path = $_SERVER['DOCUMENT_ROOT'].'/przedszkole/gals/';
         if (unlink($path.$img) && unlink ($path.'m/'.$img)){
             $sql->del_img($_GET['id']);
         }
         header('location:index.php?action=gal&gal='.$_GET['gal']);
+        break;
+    }
+    
+    case 'del_gal':{
+        $path = $_SERVER['DOCUMENT_ROOT'].'/przedszkole/gals/';
+        $result = $sql->select_gal($_GET['gal']);
+        while ($row = mysql_fetch_assoc($result)){
+            unlink($path.$row['img']);
+            unlink($path.'m/'.$row['img']);
+            $sql->del_img($row['id']);
+        }
+        break;
+    }
+    
+    case 'adm_new':{
+        $sql->insert_adm($_POST);
+        header('location:index.php?action=adm_list');
+        break;
+    }
+    
+    case 'adm_edit':{
+        $sql->update_adm($_POST);
+        header('location:index.php?action=adm_list');
+        break;
+    }
+    
+    case 'adm_pwd':{
+        $sql->pwd($_POST);
+        header('location:index.php?action=adm_list');
+        break;
+    }
+    
+    case 'adm_del':{
+        $sql->del_adm($_GET['id']);
+        header('location:index.php?action=adm_list');
+        break;
     }
     default:
         break;
