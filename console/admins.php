@@ -14,7 +14,7 @@ function adm_list(){
                         <td>'.$row['login'].'</td>
                         <td>
                             <a href="index.php?action=adm_edit&id='.$row['id'].'"><img src="assets/edit.png" alt="Edytuj"></a>
-                            <a href="index.php?action=adm_pwd&id='.$row['id'].'">Zmień hasło</a>
+                            <a href="index.php?action=adm_pwd&id='.$row['id'].'"><img src="assets/pass.png" alt="Zmień hasło"></a>
                             <a href="#" onclick="javascript:adm_del('.$row['id'].')"><img src="assets/delete.png" alt="Usuń"></a>
                         </td>
                     </tr>';

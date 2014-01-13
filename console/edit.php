@@ -5,9 +5,15 @@ function form($site){
     if ($site != 'new'){
         $data = $sql->select_site($site);
         $form = '<h2>Edycja strony: "'.$data['name'].'"</h2>';
+        $script = '<script type="text/javascript">
+                var site = new Array();
+                site[\'id\'] = '.$data['id'].';
+                site[\'name\'] = "'.$data['name'].'";
+                site[\'parrent\'] = "'.$data['parrent'].'";    
+            </script>';
     }else{
         $form = '<h2>Nowa strona</h2>';
-        $data['pos'] = $sql->select_max_pos()+1;
+        $data['pos'] = (!isset($_GET['parrent']))?$sql->select_max_pos()+1:$sql->select_max_pos_child($_GET['parrent'])+1;
         $data['id'] = '';
         $data['name'] = '';
         $data['type'] = 'text';
@@ -25,8 +31,9 @@ function form($site){
         } else{
             $data['parrent'] = $_GET['parrent'];
         }
+        $script = '';
     }
-    $form .= '
+    $form .= $script.'
             <form action = "save.php?action=';
     $form .= ($site !='new' )?'update':'insert';
     $form .= '" method = "POST">
@@ -55,7 +62,7 @@ function form($site){
         $form .= '"></a>';
     }
     if ($site != 'new' && $data['link'] != 'main'){
-        $form .= '<a href="save.php?action=delete&id='.$data['id'].'"><img src = "assets/delete.png"></a>';
+        $form .= '<a href="#" onclick="javascript:del_site(site)"><img src = "assets/delete.png"></a>';
         $form .= ($data['parrent'] == '/')?'<a href="index.php?action=new&parrent='.$data['link'].'"><img src = "assets/subsite.png"></a>':'';
     }
     $form .= '<input type = "submit" value = "Zapisz"><br>';

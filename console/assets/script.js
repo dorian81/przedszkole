@@ -63,8 +63,24 @@ function del_img(id,gal){
 }
                     
 function del_gal(gal){
-    if(confirm('Czy na pewno usunąć galerię'+gal+'?')){
+    if(confirm('Czy na pewno usunąć galerię '+gal+'?')){
        document.location='save.php?action=del_gal&gal='+gal;
+    }
+}
+
+function del_info(info){
+    if(confirm('Czy na pewno usunąć ten wpis?')){
+       document.location='save.php?action=in_del&id='+info;
+    }
+}
+
+function del_site(site){
+    if(confirm('Czy na pewno usunąć stronę '+site['name']+'?')){
+        var loc = 'save.php?action=delete&id='+site['id'];
+        if (site['parrent'] != '/'){
+            loc += '&parrent='+site['parrent'];
+        }
+        document.location=loc;
     }
 }
 

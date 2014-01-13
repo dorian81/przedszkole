@@ -16,7 +16,6 @@
         <link rel="stylesheet" type="text/css" href="assets/style.css">
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="assets/ckeditor/ckeditor.js"></script>
-        <script src="assets/ckeditor/ckeditor.js"></script>
         <script src="assets/ckeditor/adapters/jquery.js"></script>
         <script type="text/javascript" src="assets/script.js"></script>
     </HEAD>

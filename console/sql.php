@@ -25,7 +25,7 @@ class sql{
     }
     
     public function select_sites(){
-        $q = 'SELECT * FROM sites ORDER BY pos ASC;';
+        $q = 'SELECT * FROM sites WHERE parrent = \'/\' ORDER BY pos ASC;';
         $result = $this->query($q);
         return $result;
     }
@@ -58,32 +58,49 @@ class sql{
     }
     
     public function delete($id){
-        $q = 'DELETE FROM sites WHERE id='.$id.';';
-        return $this->query($q);
+        $result = $this->query('SELECT pos,parrent FROM sites WHERE id = '.$id.';');
+        $site = mysql_fetch_assoc($result);
+        $q = $this->query('UPDATE sites SET pos = pos - 1 WHERE pos > '.$site['pos'].' AND parrent = \''.$site['parrent'].'\';');
+        if ($q){
+            $q = 'DELETE FROM sites WHERE id='.$id.';';
+            return $this->query($q);
+        }else {
+            return false;
+        }
     }
     
     public function select_max_pos(){
-        $q = 'SELECT MAX(pos) AS max FROM sites;';
+        $q = 'SELECT MAX(pos) AS max FROM sites WHERE parrent = \'/\';';
+        $result = $this->to_array($q);
+        return $result['max'];
+    }
+    
+    public function select_max_pos_child($parent){
+        $q = 'SELECT MAX(pos) AS max FROM sites WHERE parrent = \''.$parent.'\';';
         $result = $this->to_array($q);
         return $result['max'];
     }
     
     public function down($pos,$id){
         $new = $pos+1;
-        $this->query('UPDATE sites SET pos='.$pos.' WHERE pos='.$new.';');
-        $this->query('UPDATE sites SET pos='.$new.' WHERE id='.$id.';');
+        $result = $this->query('SELECT parrent FROM sites WHERE id = '.$id.';');
+        $parrent = mysql_fetch_assoc($result);
+        $this->query('UPDATE sites SET pos='.$pos.' WHERE pos='.$new.' AND parrent = \''.$parrent['parrent'].'\';');
+        $this->query('UPDATE sites SET pos='.$new.' WHERE id='.$id.' AND parrent = \''.$parrent['parrent'].'\';');
         return true;
     }
     
     public function up($pos,$id){
         $new = $pos-1;
-        $this->query('UPDATE sites SET pos='.$pos.' WHERE pos='.$new.';');
-        $this->query('UPDATE sites SET pos='.$new.' WHERE id='.$id.';');
+        $result = $this->query('SELECT parrent FROM sites WHERE id = '.$id.';');
+        $parrent = mysql_fetch_assoc($result);
+        $this->query('UPDATE sites SET pos='.$pos.' WHERE pos='.$new.' AND parrent = \''.$parrent['parrent'].'\';');
+        $this->query('UPDATE sites SET pos='.$new.' WHERE id='.$id.' AND parrent = \''.$parrent['parrent'].'\';');
         return true;
     }
     
     public function select_child($parrent){
-        $q = 'SELECT * FROM sites WHERE parrent="'.$parrent.'";';
+        $q = 'SELECT * FROM sites WHERE parrent="'.$parrent.'" ORDER BY pos;';
         $result = $this->query($q);
         $children = array();
         if ($result){
@@ -125,7 +142,7 @@ class sql{
     }
     
     public function select_gal_names(){
-        $q = 'SELECT DISTINCT(gal) FROM gals;';
+        $q = 'SELECT DISTINCT(gal) FROM gals ORDER BY gal;';
         return $this->query($q);
     }
     

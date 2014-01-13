@@ -9,7 +9,7 @@ switch ($action) {
         if ($_POST['parrent'] == '/'){
             $sql->update_children($_POST['link'],$_POST['style']);
         }
-        header('location:index.php?action='.$_POST['name']);
+        header('location:index.php?action='.$_POST['link']);
         break;
     }
     case 'insert':{
@@ -29,7 +29,10 @@ switch ($action) {
     }
     case 'delete':{
         $sql->delete($_GET['id']);
-        header('location:index.php');
+        $location = 'location:index.php';
+        $location .= (isset($_GET['parrent']))?'?action='.$_GET['parrent']:'';
+        var_dump($location);
+        header($location);
         break;
     }
     case 'up':{
@@ -127,6 +130,7 @@ switch ($action) {
             unlink($path.'m/'.$row['img']);
             $sql->del_img($row['id']);
         }
+        header('location:index.php');
         break;
     }
     

@@ -33,7 +33,7 @@ function inf_list(){
     }
     $form = '<h2>Lista wiadomości</h2>';
     foreach ($news as $info){
-        $form .= '<strong>'.$info['title'].'</strong> '.date('d-m-Y H:m',strtotime($info['date'])).' <a href="index.php?action=inf_edit&id='.$info['id'].'"><img src="assets/edit.png" alt="Edytuj"></a> <a href = "save.php?action=in_del&id='.$info['id'].'"><img src="assets/delete.png" alt="Usuń"></a><br>'.$info['content'].'<br><br>';
+        $form .= '<strong>'.$info['title'].'</strong> '.date('d-m-Y H:m',strtotime($info['date'])).' <a href="index.php?action=inf_edit&id='.$info['id'].'"><img src="assets/edit.png" alt="Edytuj"></a> <a href ="#" onclick="javascript:del_info('.$info['id'].')"><img src="assets/delete.png" alt="Usuń"></a><br>'.$info['content'].'<br><br>';
     }
     return $form;
 }

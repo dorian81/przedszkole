@@ -34,7 +34,7 @@ class sql{
     }
 
         public function select_child($parrent){
-        $q = 'SELECT * FROM sites WHERE parrent="'.$parrent.'";';
+        $q = 'SELECT * FROM sites WHERE parrent="'.$parrent.'" ORDER BY pos;';
         $result = $this->query($q);
         $children = array();
         if ($result){
